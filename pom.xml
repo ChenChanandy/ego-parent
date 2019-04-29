@@ -159,4 +159,7 @@
 		</pluginManagement>
 	</build>
 
+	<modules>
+		<module>ego-pojo</module>
+	</modules>
 </project>
