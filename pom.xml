@@ -163,5 +163,7 @@
 		<module>ego-pojo</module>
 		<module>ego-service</module>
 		<module>ego-service-impl</module>
+		<module>ego-commons</module>
+		<module>ego-manage</module>
 	</modules>
 </project>
