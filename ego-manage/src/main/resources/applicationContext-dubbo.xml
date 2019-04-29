@@ -15,6 +15,6 @@
 	<!-- 配置注册中心 -->
 	<dubbo:registry address="192.168.182.130:2181" protocol="zookeeper"></dubbo:registry>
 	<!-- 配置注解扫描 -->
-	<dubbo:annotation package="com.ego.*.service.impl" />
+	<dubbo:annotation package="com.ego.manage.service.impl" />
 	
 </beans>
