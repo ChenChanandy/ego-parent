@@ -1,6 +1,7 @@
 package com.ego.manage.service;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.pojo.TbItem;
 
 public interface TbItemService {
 	
@@ -19,4 +20,12 @@ public interface TbItemService {
 	 * @return
 	 */
 	int update(String ids,byte status);
+	
+	/**
+	 * 新增商品
+	 * @param tbItem
+	 * @param desc
+	 * @return
+	 */
+	int save(TbItem item,String desc) throws Exception;
 }
