@@ -24,9 +24,16 @@
 		<zkClient-version>0.10</zkClient-version>
 		<tomcat-version>2.2</tomcat-version>
 		<pagehelper-version>4.1.6</pagehelper-version>
+		<ftpclient-version>3.3</ftpclient-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<!-- ftpclient -->
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${ftpclient-version}</version>
+			</dependency>
 			<!-- 分页插件 -->
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>
