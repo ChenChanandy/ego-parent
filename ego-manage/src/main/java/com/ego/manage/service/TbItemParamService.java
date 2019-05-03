@@ -1,6 +1,7 @@
 package com.ego.manage.service;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.pojo.EgoResult;
 
 public interface TbItemParamService {
 	/**
@@ -10,4 +11,11 @@ public interface TbItemParamService {
 	 * @return
 	 */
 	EasyUIDataGrid showPage(int page,int rows);
+	
+	/**
+	 * 批量删除商品规格参数
+	 * @param id
+	 * @return
+	 */
+	EgoResult delByIds(String ids);
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.pojo.EgoResult;
 import com.ego.manage.service.TbItemParamService;
 
 @Controller
@@ -22,8 +23,18 @@ public class TbItemParamController {
 	 */
 	@RequestMapping("item/param/list")
 	@ResponseBody
-	public EasyUIDataGrid showPage(int page, int rows) {
-		
+	public EasyUIDataGrid showPage(int page, int rows) {		
 		return tbItemParamServiceImpl.showPage(page, rows);
+	}
+	
+	/**
+	 * 批量删除规格参数
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("item/param/delete")
+	@ResponseBody
+	public EgoResult delete(String ids) {		
+		return tbItemParamServiceImpl.delByIds(ids);
 	}
 }

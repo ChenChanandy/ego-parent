@@ -10,4 +10,10 @@ public interface TbItemParamDubboService {
 	 * @return 包含：当前显示的数据和总条数
 	 */
 	EasyUIDataGrid showPage(int page,int rows);
+	/**
+	 * 批量删除规格参数
+	 * @param ids
+	 * @return
+	 */
+	int delByIds(String ids) throws Exception;
 }

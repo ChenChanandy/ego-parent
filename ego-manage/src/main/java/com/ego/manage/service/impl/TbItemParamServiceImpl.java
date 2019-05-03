@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.pojo.EgoResult;
 import com.ego.dubbo.service.TbItemCatDubboService;
 import com.ego.dubbo.service.TbItemParamDubboService;
 import com.ego.manage.pojo.TbItemParamChild;
@@ -37,6 +38,21 @@ public class TbItemParamServiceImpl implements TbItemParamService{
 		}
 		datagrid.setRows(listChild);
 		return datagrid;
+	}
+	//批量删除规格参数
+	@Override
+	public EgoResult delByIds(String ids){
+		EgoResult er = new EgoResult();
+		try {
+			int index = tbItemParamDubboServiceImpl.delByIds(ids);			
+			if(index==1) {
+				er.setStatus(200);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			er.setData(e.getMessage());
+		}
+		return er;
 	}
 	
 }
