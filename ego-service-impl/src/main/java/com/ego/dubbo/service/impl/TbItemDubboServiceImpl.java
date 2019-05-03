@@ -8,9 +8,11 @@ import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.dubbo.service.TbItemDubblService;
 import com.ego.mapper.TbItemDescMapper;
 import com.ego.mapper.TbItemMapper;
+import com.ego.mapper.TbItemParamItemMapper;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemExample;
+import com.ego.pojo.TbItemParamItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -19,7 +21,8 @@ public class TbItemDubboServiceImpl implements TbItemDubblService {
 	private TbItemMapper tbItemMapper;
 	@Resource
 	private TbItemDescMapper tbItemDescMapper;
-	
+	@Resource
+	private TbItemParamItemMapper tbItemParamItemMapperImpl;
 	/**
 	 * 分页查询
 	 */
@@ -50,19 +53,21 @@ public class TbItemDubboServiceImpl implements TbItemDubblService {
 	}
 	
 	/**
-	 * 新增商品和事务功能
+	 * 新增商品、商品描述、规格参数，带事务功能
+	 * 
 	 * @throws Exception 
 	 */
 	@Override
-	public int insItemDesc(TbItem tbItem, TbItemDesc desc) throws Exception {
+	public int insItemDesc(TbItem tbItem, TbItemDesc desc,TbItemParamItem paramItem) throws Exception {
 		int index = 0;
 		try {
 			index = tbItemMapper.insertSelective(tbItem);
 			index += tbItemDescMapper.insertSelective(desc);
+			index += tbItemParamItemMapperImpl.insertSelective(paramItem);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(index==2) {
+		if(index==3) {
 			return 1;
 		}else {
 			throw new Exception("新增失败，数据还原");

@@ -75,14 +75,19 @@ public class TbItemController {
 		}
 		return er;
 	}
-	
+	/**
+	 * 商品新增，规格参数
+	 * @param item
+	 * @param desc
+	 * @return
+	 */
 	@RequestMapping("item/save")
 	@ResponseBody
-	public EgoResult insert(TbItem item,String desc) {
+	public EgoResult insert(TbItem item,String desc,String itemParams) {
 		EgoResult er = new EgoResult();
 		int index;
 		try {
-			index = tbItemServiceImpl.save(item, desc);
+			index = tbItemServiceImpl.save(item, desc,itemParams);
 			if(index==1) {
 				er.setStatus(200);
 			}
