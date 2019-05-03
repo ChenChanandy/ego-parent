@@ -1,6 +1,7 @@
 package com.ego.manage.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class TbItemParamServiceImpl implements TbItemParamService{
 	private TbItemParamDubboService tbItemParamDubboServiceImpl;
 	@Reference
 	private TbItemCatDubboService tbItemCatDubboServiceImpl;
+	
+	EgoResult er = new EgoResult();
 	
 	@Override
 	public EasyUIDataGrid showPage(int page, int rows) {
@@ -42,7 +45,6 @@ public class TbItemParamServiceImpl implements TbItemParamService{
 	//批量删除规格参数
 	@Override
 	public EgoResult delByIds(String ids){
-		EgoResult er = new EgoResult();
 		try {
 			int index = tbItemParamDubboServiceImpl.delByIds(ids);			
 			if(index==1) {
@@ -51,6 +53,27 @@ public class TbItemParamServiceImpl implements TbItemParamService{
 		} catch (Exception e) {
 			e.printStackTrace();
 			er.setData(e.getMessage());
+		}
+		return er;
+	}
+	
+	@Override
+	public EgoResult showParam(long catId) {			
+		TbItemParam param = tbItemParamDubboServiceImpl.selByCatId(catId);
+		if(param!=null) {
+			er.setStatus(200);
+			er.setData(param);
+		}
+		return er;
+	}
+	@Override
+	public EgoResult save(TbItemParam param) {
+		Date date = new Date();
+		param.setCreated(date);
+		param.setUpdated(date);
+		int index = tbItemParamDubboServiceImpl.insParam(param);
+		if(index>0) {
+			er.setStatus(200);
 		}
 		return er;
 	}
