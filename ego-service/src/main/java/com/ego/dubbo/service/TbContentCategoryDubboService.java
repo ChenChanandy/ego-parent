@@ -31,4 +31,5 @@ public interface TbContentCategoryDubboService {
 	 * @return
 	 */
 	TbContentCategory selById(long id);
+ 
 }

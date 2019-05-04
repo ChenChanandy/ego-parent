@@ -27,4 +27,10 @@ public interface TbContentCategoryService {
 	 * @return
 	 */
 	EgoResult update(TbContentCategory cate);
+	/**
+	 * 删除类目
+	 * @param cate
+	 * @return
+	 */
+	EgoResult delete(TbContentCategory cate);
 }

@@ -88,8 +88,35 @@ public class TbContentCategoryServiceImpl implements TbContentCategoryService{
 				return er;
 			}
 		}
+		Date date = new Date();
+		cate.setUpdated(date);
 		int index = tbContentCategoryDubboServiceImpl.updIsParentById(cate);
 		if(index>0) {
+			er.setStatus(200);
+		}
+		return er;
+	}
+
+	@Override
+	public EgoResult delete(TbContentCategory cate) {
+		EgoResult er = new EgoResult();
+		Date date = new Date();
+		cate.setStatus(0);
+		cate.setUpdated(date);
+		int index = tbContentCategoryDubboServiceImpl.updIsParentById(cate);
+		if(index>0) {
+			TbContentCategory selById = tbContentCategoryDubboServiceImpl.selById(cate.getId());
+			List<TbContentCategory> list = tbContentCategoryDubboServiceImpl.selByPid(selById.getParentId());
+			if(list==null||list.size()==0) {
+				TbContentCategory parent = new TbContentCategory();
+				parent.setId(selById.getParentId());
+				parent.setIsParent(false);
+				parent.setUpdated(date);
+				int result = tbContentCategoryDubboServiceImpl.updIsParentById(parent);
+				if(result>0) {
+					er.setStatus(200);
+				}
+			}
 			er.setStatus(200);
 		}
 		return er;

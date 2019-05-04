@@ -49,4 +49,15 @@ public class TbContentCategoryController {
 	public EgoResult update(TbContentCategory cate) {
 		return tbContentCategoryServiceImpl.update(cate);
 	} 
+	
+	/**
+	 * 删除类目
+	 * @param cate
+	 * @return
+	 */
+	@RequestMapping("content/category/delete")
+	@ResponseBody
+	public EgoResult delete(TbContentCategory cate) {
+		return tbContentCategoryServiceImpl.delete(cate);
+	} 
 }
