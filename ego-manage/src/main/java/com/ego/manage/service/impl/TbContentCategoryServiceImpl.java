@@ -65,12 +65,33 @@ public class TbContentCategoryServiceImpl implements TbContentCategoryService{
 			parent.setIsParent(true);
 			parent.setCreated(date);
 			parent.setUpdated(date);
-			tbContentCategoryDubboServiceImpl.updIsParent(parent);
+			tbContentCategoryDubboServiceImpl.updIsParentById(parent);
 		}
 		er.setStatus(200);
 		Map<String,Long> map = new HashMap<>();
 		map.put("id", id);
 		er.setData(map);
+		return er;
+	}
+
+	@Override
+	public EgoResult update(TbContentCategory cate) {
+		//查询当前节点信息
+		TbContentCategory cateSelect = tbContentCategoryDubboServiceImpl.selById(cate.getId());		
+		EgoResult er = new EgoResult();
+		//查询当前节点的父节点的所有子节点信息
+		List<TbContentCategory> children = tbContentCategoryDubboServiceImpl.selByPid(cateSelect.getParentId());
+		for (TbContentCategory child : children) {
+			//判断当前节点名称是否存在
+			if(child.getName().equals(cate.getName())) {
+				er.setData("该分类名已存在");
+				return er;
+			}
+		}
+		int index = tbContentCategoryDubboServiceImpl.updIsParentById(cate);
+		if(index>0) {
+			er.setStatus(200);
+		}
 		return er;
 	}
 

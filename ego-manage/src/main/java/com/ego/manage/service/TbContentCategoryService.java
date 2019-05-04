@@ -20,4 +20,11 @@ public interface TbContentCategoryService {
 	 * @return
 	 */
 	EgoResult create(TbContentCategory cate);
+	
+	/**
+	 * 类目重命名
+	 * @param id
+	 * @return
+	 */
+	EgoResult update(TbContentCategory cate);
 }

@@ -26,8 +26,13 @@ public class TbContentCategoryDubboServiceImpl implements TbContentCategoryDubbo
 	}
 
 	@Override
-	public int updIsParent(TbContentCategory cate) {
+	public int updIsParentById(TbContentCategory cate) {
 		return tbContentCategoryMapper.updateByPrimaryKeySelective(cate);
+	}
+
+	@Override
+	public TbContentCategory selById(long id) {
+		return tbContentCategoryMapper.selectByPrimaryKey(id);
 	}
 	
 }

@@ -38,4 +38,15 @@ public class TbContentCategoryController {
 	public EgoResult create(TbContentCategory cate) {
 		return tbContentCategoryServiceImpl.create(cate);
 	}
+	
+	/**
+	 * 重命名
+	 * @param cate
+	 * @return
+	 */
+	@RequestMapping("content/category/update")
+	@ResponseBody
+	public EgoResult update(TbContentCategory cate) {
+		return tbContentCategoryServiceImpl.update(cate);
+	} 
 }
