@@ -19,5 +19,15 @@ public class TbContentCategoryDubboServiceImpl implements TbContentCategoryDubbo
 		example.createCriteria().andParentIdEqualTo(id).andStatusEqualTo(1);	
 		return tbContentCategoryMapper.selectByExample(example);
 	}
+
+	@Override
+	public int insTbContentCategory(TbContentCategory cate) {		
+		return tbContentCategoryMapper.insertSelective(cate);
+	}
+
+	@Override
+	public int updIsParent(TbContentCategory cate) {
+		return tbContentCategoryMapper.updateByPrimaryKeySelective(cate);
+	}
 	
 }
