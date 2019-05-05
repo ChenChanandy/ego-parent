@@ -19,4 +19,11 @@ public interface TbContentService {
 	 * @return
 	 */
 	int save(TbContent content);
+	
+	/**
+	 * 修改内容
+	 * @param content
+	 * @return
+	 */
+	int edit(TbContent content);
 }

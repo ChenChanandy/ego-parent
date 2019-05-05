@@ -19,4 +19,11 @@ public interface TbContentDubboService {
 	 * @return
 	 */
 	int insContent(TbContent content);
+	
+	/**
+	 * 修改内容
+	 * @param content
+	 * @return
+	 */
+	int updContent(TbContent content);
 }

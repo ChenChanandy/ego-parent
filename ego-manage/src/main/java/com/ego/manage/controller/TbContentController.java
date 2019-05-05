@@ -44,4 +44,14 @@ public class TbContentController {
 		return er;
 	}
 	
+	@RequestMapping("rest/content/edit")
+	@ResponseBody
+	public EgoResult edit(TbContent content) {
+		EgoResult er = new EgoResult();
+		int index = tbContentServiceImpl.edit(content);
+		if(index>0) {
+			er.setStatus(200);
+		}
+		return er;
+	}
 }

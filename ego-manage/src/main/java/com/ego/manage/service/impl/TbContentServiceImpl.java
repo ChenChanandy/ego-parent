@@ -28,4 +28,11 @@ public class TbContentServiceImpl implements TbContentService{
 		return tbContentDubboServiceImpl.insContent(content);
 	}
 
+	@Override
+	public int edit(TbContent content) {
+		Date date = new Date();
+		content.setUpdated(date);
+		return tbContentDubboServiceImpl.updContent(content);
+	}
+
 }

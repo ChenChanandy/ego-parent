@@ -40,5 +40,13 @@ public class TbContentDubboServiceImpl implements TbContentDubboService{
 	public int insContent(TbContent content) {
 		return tbContentMapper.insertSelective(content);
 	}
+	
+	/**
+	 * 修改内容
+	 */
+	@Override
+	public int updContent(TbContent content) {		
+		return tbContentMapper.updateByPrimaryKeySelective(content);
+	}
 
 }
