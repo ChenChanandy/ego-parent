@@ -32,5 +32,13 @@ public class TbContentDubboServiceImpl implements TbContentDubboService{
 		datagrid.setTotal(pi.getTotal());
 		return datagrid;
 	}
+	
+	/**
+	 *新增内容
+	 */
+	@Override
+	public int insContent(TbContent content) {
+		return tbContentMapper.insertSelective(content);
+	}
 
 }

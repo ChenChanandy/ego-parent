@@ -1,6 +1,7 @@
 package com.ego.dubbo.service;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.pojo.TbContent;
 
 public interface TbContentDubboService {
 	/**
@@ -11,4 +12,11 @@ public interface TbContentDubboService {
 	 * @return
 	 */
 	EasyUIDataGrid selContentByPage(long categoryId,int page,int rows);
+	
+	/**
+	 * 新增内容
+	 * @param content
+	 * @return
+	 */
+	int insContent(TbContent content);
 }
