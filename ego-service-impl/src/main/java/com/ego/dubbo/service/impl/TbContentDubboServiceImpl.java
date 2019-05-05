@@ -63,4 +63,22 @@ public class TbContentDubboServiceImpl implements TbContentDubboService{
 		}
 	}
 
+	@Override
+	public List<TbContent> selByConut(int count, boolean isSort) {
+		TbContentExample example = new TbContentExample();
+		//排序
+		if(isSort) {
+			//asc升序(默认), desc降序
+			example.setOrderByClause("updated desc");
+		}
+		if(count!=0) {
+			PageHelper.startPage(1, count);
+			List<TbContent> list = tbContentMapper.selectByExampleWithBLOBs(example);
+			PageInfo<TbContent> pi = new PageInfo<>(list);
+			return pi.getList();
+		}else {
+			return tbContentMapper.selectByExampleWithBLOBs(example);
+		}
+	}
+
 }
