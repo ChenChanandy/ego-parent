@@ -49,4 +49,18 @@ public class TbContentDubboServiceImpl implements TbContentDubboService{
 		return tbContentMapper.updateByPrimaryKeySelective(content);
 	}
 
+	@Override
+	public int delContentByIds(String ids) throws Exception {
+		int index = 0;
+		String[] idsStr = ids.split(",");
+		for (String id : idsStr) {
+			index += tbContentMapper.deleteByPrimaryKey(Long.parseLong(id));
+		}
+		if(index==idsStr.length) {
+			return 1;
+		}else {
+			throw new Exception("该数据可能已经不存在");
+		}
+	}
+
 }

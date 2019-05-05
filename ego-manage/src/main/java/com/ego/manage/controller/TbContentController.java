@@ -43,7 +43,11 @@ public class TbContentController {
 		}
 		return er;
 	}
-	
+	/**
+	 * 修改内容
+	 * @param content
+	 * @return
+	 */
 	@RequestMapping("rest/content/edit")
 	@ResponseBody
 	public EgoResult edit(TbContent content) {
@@ -51,6 +55,26 @@ public class TbContentController {
 		int index = tbContentServiceImpl.edit(content);
 		if(index>0) {
 			er.setStatus(200);
+		}
+		return er;
+	}
+	/**
+	 * 删除内容
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("content/delete")
+	@ResponseBody
+	public EgoResult delete(String ids) {
+		EgoResult er = new EgoResult();
+		try {
+			int index = tbContentServiceImpl.delete(ids);
+			if(index>0) {
+				er.setStatus(200);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			er.setData(e.getMessage());
 		}
 		return er;
 	}

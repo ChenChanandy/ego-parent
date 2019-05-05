@@ -26,4 +26,11 @@ public interface TbContentDubboService {
 	 * @return
 	 */
 	int updContent(TbContent content);
+	
+	/**
+	 * 批量删除内容
+	 * @param id
+	 * @return
+	 */
+	int delContentByIds(String ids) throws Exception;
 }

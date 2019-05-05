@@ -35,4 +35,9 @@ public class TbContentServiceImpl implements TbContentService{
 		return tbContentDubboServiceImpl.updContent(content);
 	}
 
+	@Override
+	public int delete(String ids) throws Exception {
+		return tbContentDubboServiceImpl.delContentByIds(ids);
+	}
+
 }

@@ -26,4 +26,10 @@ public interface TbContentService {
 	 * @return
 	 */
 	int edit(TbContent content);
+	/**
+	 * 删除内容
+	 * @param id
+	 * @return
+	 */
+	int delete(String ids) throws Exception;
 }
