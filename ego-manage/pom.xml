@@ -10,6 +10,7 @@
 	<artifactId>ego-manage</artifactId>
 	<packaging>war</packaging>
 	<dependencies>
+		<!-- 依赖redis -->
 		<dependency>
 			<groupId>com.ego</groupId>
 			<artifactId>ego-redis</artifactId>
