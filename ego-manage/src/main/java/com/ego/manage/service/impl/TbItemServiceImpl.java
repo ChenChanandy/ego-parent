@@ -1,12 +1,17 @@
 package com.ego.manage.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ego.commons.pojo.EasyUIDataGrid;
+import com.ego.commons.utils.HttpClientUtil;
 import com.ego.commons.utils.IDUtils;
+import com.ego.commons.utils.JsonUtils;
 import com.ego.dubbo.service.TbItemDubblService;
 import com.ego.manage.service.TbItemService;
 import com.ego.pojo.TbItem;
@@ -23,7 +28,9 @@ public class TbItemServiceImpl implements TbItemService{
 	public EasyUIDataGrid show(int page, int rows) {
 		return tbItemDubblServiceImpl.show(page, rows);
 	}
-
+	@Value("${search.url}")
+	private String url;
+	
 	@Override
 	public int update(String ids, byte status) {
 		int index = 0;
@@ -63,6 +70,18 @@ public class TbItemServiceImpl implements TbItemService{
 		
 		int index = 0;
 		index = tbItemDubblServiceImpl.insItemDesc(item, itemDesc,paramItem);
+		//新建一个子线程，提高商品新增效率
+		final TbItem itemFinal = item;
+		final String descFinal = desc;
+		new Thread() {
+			public void run() {
+				Map<String,Object> map = new HashMap<>();
+				map.put("item",itemFinal);
+				map.put("desc",descFinal);
+				HttpClientUtil.doPostJson(url, JsonUtils.objectToJson(map));
+			}
+		}.start();
+		
 		return index;
 	}
 

@@ -1,14 +1,13 @@
 package com.ego.search.controller;
 
-import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,5 +60,23 @@ public class TbItemController {
 			e.printStackTrace();
 		} 
 		return "search";		
+	}
+	
+	/**
+	 * 新增
+	 * @param map
+	 * @return
+	 * @RequestBody 把请求体中流数据转换为指定类型
+	 */
+	@RequestMapping("solr/add")
+	@ResponseBody
+	public int add(@RequestBody Map<String,Object> map) {
+		
+		try {
+			return tbItemServiceImpl.add((LinkedHashMap)map.get("item"), map.get("desc").toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return 0;
 	}
 }

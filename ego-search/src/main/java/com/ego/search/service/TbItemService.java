@@ -18,4 +18,11 @@ public interface TbItemService {
 	 * @return
 	 */
 	Map<String,Object> selByQuery(String query,int page,int rows) throws SolrServerException, IOException;
+	/**
+	 * 新增
+	 * @param map
+	 * @param desc
+	 * @return
+	 */
+	int add(Map<String,Object> map,String desc) throws SolrServerException, IOException;
 }

@@ -16,6 +16,11 @@
 			<artifactId>ego-redis</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- ftpclient -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+		</dependency>
 		<!-- 分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
