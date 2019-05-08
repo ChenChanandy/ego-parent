@@ -45,7 +45,7 @@ public class TbItemController {
 	 * @param page
 	 * @param rows
 	 * @return
-	 * search.html伪静态页面，ajax中不能使用.html
+	 * search.html伪静态页面
 	 */
 	@RequestMapping("search.html")
 	public String search(Model model,String q,@RequestParam(defaultValue="1") int page,@RequestParam(defaultValue = "12") int rows) {

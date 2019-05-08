@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -41,6 +42,9 @@ public class TbItemServiceImpl implements TbItemService{
 	
 	@Override
 	public void init() throws SolrServerException, IOException {
+		//删除所有
+		solrClient.deleteByQuery("*:*");
+		solrClient.commit();
 		//查询所有正常状态的商品
 		List<TbItem> listItem = tbItemDubblServiceImpl.selAllByStatus((byte)1);
 		for (TbItem item : listItem) {
@@ -50,13 +54,14 @@ public class TbItemServiceImpl implements TbItemService{
 			TbItemDesc desc = tbItemDescDubboServiceImpl.selByItemId(item.getId());
 			
 			SolrInputDocument doc = new SolrInputDocument();
-			doc.addField("id", item.getId());
-			doc.addField("item_title", item.getTitle());
-			doc.addField("item_sell_point", item.getSellPoint());
-			doc.addField("item_price", item.getPrice());
-			doc.addField("item_image", item.getImage());
-			doc.addField("item_category_name", cat.getName());
-			doc.addField("item_desc", desc.getItemDesc());
+			doc.setField("id", item.getId());
+			doc.setField("item_title", item.getTitle());
+			doc.setField("item_sell_point", item.getSellPoint());
+			doc.setField("item_price", item.getPrice());
+			doc.setField("item_image", item.getImage());
+			doc.setField("item_category_name", cat.getName());
+			doc.setField("item_desc", desc.getItemDesc());
+			doc.setField("item_updated", item.getUpdated());
 			solrClient.add(doc);
 		}
 		solrClient.commit();
@@ -79,6 +84,8 @@ public class TbItemServiceImpl implements TbItemService{
 		params.addHighlightField("item_title"); //需要高亮的类型
 		params.setHighlightSimplePre("<span style='color:red'>");//高亮标签头
 		params.setHighlightSimplePost("</span>");//高亮标签尾
+		//添加排序
+		params.setSort("item_updated",ORDER.desc);
 		
 		QueryResponse response = solrClient.query(params);
 		List<TbItemChild> listChild = new ArrayList<>();
