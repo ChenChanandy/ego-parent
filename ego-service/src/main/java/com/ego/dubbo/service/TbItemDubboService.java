@@ -7,7 +7,7 @@ import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemParamItem;
 
-public interface TbItemDubblService {
+public interface TbItemDubboService {
 	/**
 	 * 商品分页查询
 	 * @param page 第几页
@@ -36,4 +36,10 @@ public interface TbItemDubblService {
 	 * @return
 	 */
 	List<TbItem> selAllByStatus(byte status);
+	/**
+	 * 根据id查询商品信息
+	 * @param id
+	 * @return
+	 */
+	TbItem selById(long id);
 }

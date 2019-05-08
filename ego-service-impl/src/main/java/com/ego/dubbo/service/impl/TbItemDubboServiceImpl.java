@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.ego.commons.pojo.EasyUIDataGrid;
-import com.ego.dubbo.service.TbItemDubblService;
+import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.mapper.TbItemDescMapper;
 import com.ego.mapper.TbItemMapper;
 import com.ego.mapper.TbItemParamItemMapper;
@@ -16,7 +16,7 @@ import com.ego.pojo.TbItemParamItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-public class TbItemDubboServiceImpl implements TbItemDubblService {
+public class TbItemDubboServiceImpl implements TbItemDubboService {
 	@Resource
 	private TbItemMapper tbItemMapper;
 	@Resource
@@ -81,6 +81,10 @@ public class TbItemDubboServiceImpl implements TbItemDubblService {
 		TbItemExample example = new TbItemExample();
 		example.createCriteria().andStatusEqualTo(status);		
 		return tbItemMapper.selectByExample(example);
+	}
+	@Override
+	public TbItem selById(long id) {
+		return tbItemMapper.selectByPrimaryKey(id);
 	}
 
 }

@@ -12,7 +12,7 @@ import com.ego.commons.pojo.EasyUIDataGrid;
 import com.ego.commons.utils.HttpClientUtil;
 import com.ego.commons.utils.IDUtils;
 import com.ego.commons.utils.JsonUtils;
-import com.ego.dubbo.service.TbItemDubblService;
+import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.manage.service.TbItemService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
@@ -22,7 +22,7 @@ import com.ego.pojo.TbItemParamItem;
 public class TbItemServiceImpl implements TbItemService{
 	
 	@Reference
-	private TbItemDubblService tbItemDubblServiceImpl;
+	private TbItemDubboService tbItemDubblServiceImpl;
 	
 	@Override
 	public EasyUIDataGrid show(int page, int rows) {

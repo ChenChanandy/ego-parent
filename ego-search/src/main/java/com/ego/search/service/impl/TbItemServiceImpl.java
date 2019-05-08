@@ -20,19 +20,19 @@ import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ego.commons.pojo.TbItemChild;
 import com.ego.dubbo.service.TbItemCatDubboService;
 import com.ego.dubbo.service.TbItemDescDubboService;
-import com.ego.dubbo.service.TbItemDubblService;
+import com.ego.dubbo.service.TbItemDubboService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemCat;
 import com.ego.pojo.TbItemDesc;
-import com.ego.search.pojo.TbItemChild;
 import com.ego.search.service.TbItemService;
 
 @Service
 public class TbItemServiceImpl implements TbItemService{
 	@Reference
-	private TbItemDubblService tbItemDubblServiceImpl;
+	private TbItemDubboService tbItemDubblServiceImpl;
 	@Reference
 	private TbItemCatDubboService tbItemCatDubboServiceImpl;
 	@Reference

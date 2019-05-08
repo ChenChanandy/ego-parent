@@ -17,7 +17,7 @@
 	<!-- 配置端口 -->
 	<dubbo:protocol name="dubbo" port="20888"></dubbo:protocol>
 	<!-- 注册功能 -->
-	<dubbo:service interface="com.ego.dubbo.service.TbItemDubblService" ref="tbItemDubboServiceImpl"></dubbo:service>
+	<dubbo:service interface="com.ego.dubbo.service.TbItemDubboService" ref="tbItemDubboServiceImpl"></dubbo:service>
 	<bean id="tbItemDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemDubboServiceImpl"></bean>
 	<!-- 商品类目服务 -->
 	<dubbo:service interface="com.ego.dubbo.service.TbItemCatDubboService" ref="tbItemCatDubboServiceImpl"></dubbo:service>

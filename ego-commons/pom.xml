@@ -9,6 +9,12 @@
 	</parent>
 	<artifactId>ego-commons</artifactId>
 	<dependencies>
+		<!-- 依赖pojo -->
+		<dependency>
+			<groupId>com.ego</groupId>
+			<artifactId>ego-pojo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
