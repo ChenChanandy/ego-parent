@@ -19,4 +19,12 @@ public interface TbUserService {
 	 * @return
 	 */
 	EgoResult getUserInfoByToken(String token);
+	/**
+	 * 退出
+	 * @param token
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	EgoResult logout(String token,HttpServletRequest request,HttpServletResponse response);
 }

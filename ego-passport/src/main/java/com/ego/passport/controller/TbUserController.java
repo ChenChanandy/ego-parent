@@ -54,6 +54,25 @@ public class TbUserController {
 		}
 		return er;
 	}
+	/**
+	 * 退出
+	 * @param token
+	 * @param callback
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("user/logout/{token}")
+	@ResponseBody
+	public Object logout(@PathVariable String token, String callback, HttpServletRequest request, HttpServletResponse response) {
+		EgoResult er = tbUserServiceImpl.logout(token, request, response);
+		if(callback!=null&&!callback.equals("")) {
+			MappingJacksonValue mjv = new MappingJacksonValue(er);
+			mjv.setJsonpFunction(callback);
+			return mjv;
+		}
+		return er;
+	}
 	
 	
 	

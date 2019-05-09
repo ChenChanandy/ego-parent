@@ -59,4 +59,14 @@ public class TbUserServiceImpl implements TbUserService{
 		return er;
 	}
 
+	@Override
+	public EgoResult logout(String token, HttpServletRequest request, HttpServletResponse response) {
+		jedisDaoImpl.del(token);
+		CookieUtils.deleteCookie(request, response, "TT_TOKEN");
+		EgoResult er = new EgoResult();
+		er.setStatus(200);
+		er.setMsg("OK");
+		return er;
+	}
+
 }
