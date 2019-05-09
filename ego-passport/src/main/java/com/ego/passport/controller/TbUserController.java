@@ -1,6 +1,8 @@
 package com.ego.passport.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +37,8 @@ public class TbUserController {
 	 */
 	@RequestMapping("user/login")
 	@ResponseBody
-	public EgoResult login(TbUser user) {
-		return tbUserServiceImpl.login(user);	
+	public EgoResult login(TbUser user,HttpServletRequest request,HttpServletResponse response) {
+		return tbUserServiceImpl.login(user,request,response);	
 	}
 	
 	
