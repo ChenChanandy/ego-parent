@@ -4,8 +4,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +42,19 @@ public class TbUserController {
 	public EgoResult login(TbUser user,HttpServletRequest request,HttpServletResponse response) {
 		return tbUserServiceImpl.login(user,request,response);	
 	}
+	
+	@RequestMapping("user/token/{token}")
+	@ResponseBody
+	public Object getUserInfo(@PathVariable String token,String callback) {
+		EgoResult er = tbUserServiceImpl.getUserInfoByToken(token);
+		if(callback!=null&&!callback.equals("")) {
+			MappingJacksonValue mjv = new MappingJacksonValue(er);
+			mjv.setJsonpFunction(callback);
+			return mjv;
+		}
+		return er;
+	}
+	
 	
 	
 	/**

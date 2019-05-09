@@ -13,4 +13,10 @@ public interface TbUserService {
 	 * @return
 	 */
 	EgoResult login(TbUser user,HttpServletRequest request,HttpServletResponse response); 
+	/**
+	 * 根据token查询用户信息
+	 * @param token
+	 * @return
+	 */
+	EgoResult getUserInfoByToken(String token);
 }

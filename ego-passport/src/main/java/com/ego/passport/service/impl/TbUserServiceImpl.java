@@ -42,4 +42,21 @@ public class TbUserServiceImpl implements TbUserService{
 		return er;
 	}
 
+	@Override
+	public EgoResult getUserInfoByToken(String token) {
+		EgoResult er = new EgoResult();
+		String json = jedisDaoImpl.get(token);
+		if(json!=null&&!json.equals("")) {
+			TbUser tbUser = JsonUtils.jsonToPojo(json, TbUser.class);
+			//可以把密码清空
+			tbUser.setPassword(null);
+			er.setStatus(200);
+			er.setMsg("OK");
+			er.setData(tbUser);
+		}else {
+			er.setMsg("获取失败");
+		}		
+		return er;
+	}
+
 }
