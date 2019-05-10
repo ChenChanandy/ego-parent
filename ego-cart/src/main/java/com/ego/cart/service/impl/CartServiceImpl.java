@@ -80,4 +80,26 @@ public class CartServiceImpl implements CartService{
 		return JsonUtils.jsonToList(json, TbItemChild.class);
 	}
 
+	@Override
+	public EgoResult update(long id, int num, HttpServletRequest request) {
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		String jsonUser = HttpClientUtil.doPost(passportUrl+token);
+		EgoResult er = JsonUtils.jsonToPojo(jsonUser, EgoResult.class);		
+		String key = cartKey+((LinkedHashMap)er.getData()).get("username");
+		
+		String json = jedisDaoImpl.get(key);
+		List<TbItemChild> list = JsonUtils.jsonToList(json, TbItemChild.class);
+		for (TbItemChild child : list) {
+			if(child.getId()==id) {
+				child.setNum(num);
+			}
+		}
+		String ok = jedisDaoImpl.set(key, JsonUtils.objectToJson(list));
+		EgoResult egoResult = new EgoResult();
+		if(ok.equals("OK")) {
+			egoResult.setStatus(200);
+		}
+		return egoResult;
+	}
+
 }

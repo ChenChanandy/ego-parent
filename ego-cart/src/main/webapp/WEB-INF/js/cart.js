@@ -9,6 +9,7 @@ var TTCart = {
 			$.post("/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val() + ".action",function(data){
 				TTCart.refreshTotalPrice();
 			});
+			TTCart.refreshTotalNum();
 		});
 		$(".decrement").click(function(){//-
 			var _thisInput = $(this).siblings("input");
@@ -19,6 +20,7 @@ var TTCart = {
 			$.post("/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val() + ".action",function(data){
 				TTCart.refreshTotalPrice();
 			});
+			TTCart.refreshTotalNum();
 		});
 		$(".quantity-form .quantity-text").rnumber(1);//限制只能输入数字
 		$(".quantity-form .quantity-text").change(function(){
@@ -26,6 +28,7 @@ var TTCart = {
 			$.post("/service/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val(),function(data){
 				TTCart.refreshTotalPrice();
 			});
+			TTCart.refreshTotalNum();
 		});
 	},
 	refreshTotalPrice : function(){ //重新计算总价
@@ -39,12 +42,23 @@ var TTCart = {
 			 thousandsSeparator: ',',
 			 centsLimit: 2
 		});
+	},
+	refreshTotalNum: function(){//计算总数量
+		var totalNum = 0;
+		$(".quantity-form .quantity-text").each(function(i,e){
+			var _this = $(e);
+			if(_this.parent().parent().siblings(".p-checkbox").children().eq(0)[0].checked){
+				totalNum += parseInt(_this.val());
+			}
+		});
+		$("#selectedCount").html(totalNum);
 	}
 };
 
 $(function(){
 	TTCart.load();
 	TTCart.itemNumChange();
+	TTCart.refreshTotalNum();
 	
 	//对删除超链接添加点击事情
 	$(".mycart_remove").click(function(){
@@ -55,8 +69,9 @@ $(function(){
 				//parent()当前标签的父标签
 				$a.parent().parent().parent().remove();
 				TTCart.refreshTotalPrice();
+				TTCart.refreshTotalNum();
 			}
-		})
+		});
 		return false;
 	});
 	//对复选框添加点击事件
@@ -74,6 +89,9 @@ $(function(){
 			 thousandsSeparator: ',',
 			 centsLimit: 2
 		});
+		
+		TTCart.refreshTotalNum();
+		
 	});
 	//"去结算"按钮点击事件
 	$("#toSettlement").click(function(){
