@@ -1,9 +1,11 @@
 package com.ego.cart.controller;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,5 +24,11 @@ public class CartController {
 	public String addCart(@PathVariable long id,int num,HttpServletRequest req) {
 		cartServiceImpl.addCart(id, num, req);
 		return "cartSuccess";
+	}
+	
+	@RequestMapping("cart/cart.html")
+	public String showCart(HttpServletRequest req,Model model){
+		model.addAttribute("cartList", cartServiceImpl.showCart(req));
+		return "cart";
 	}
 }
