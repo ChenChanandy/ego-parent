@@ -28,4 +28,12 @@ public interface CartService {
 	 * @return
 	 */
 	EgoResult update(long id,int num,HttpServletRequest request);
+	
+	/**
+	 * 删除购物车商品
+	 * @param id
+	 * @param request
+	 * @return
+	 */
+	EgoResult delete(long id, HttpServletRequest request);
 }

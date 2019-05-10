@@ -38,10 +38,27 @@ public class CartController {
 		model.addAttribute("cartList", cartServiceImpl.showCart(req));
 		return "cart";
 	}
-	
+	/**
+	 * 修改商品数量
+	 * @param id
+	 * @param num
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("cart/update/num/{id}/{num}.action")
 	@ResponseBody
 	public EgoResult update(@PathVariable long id,@PathVariable int num,HttpServletRequest request) {
 		return cartServiceImpl.update(id, num, request);
+	}
+	/**
+	 * 删除购物车商品
+	 * @param id
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("cart/delete/{id}.action")
+	@ResponseBody
+	public EgoResult delete(@PathVariable long id,HttpServletRequest request) {
+		return cartServiceImpl.delete(id, request);
 	}
 }
