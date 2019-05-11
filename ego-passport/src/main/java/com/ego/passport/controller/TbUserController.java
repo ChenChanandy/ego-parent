@@ -46,7 +46,12 @@ public class TbUserController {
 	public EgoResult login(TbUser user,HttpServletRequest request,HttpServletResponse response) {
 		return tbUserServiceImpl.login(user,request,response);	
 	}
-	
+	/**
+	 * 根据token查询用户信息
+	 * @param token
+	 * @param callback
+	 * @return
+	 */
 	@RequestMapping("user/token/{token}")
 	@ResponseBody
 	public Object getUserInfo(@PathVariable String token,String callback) {
